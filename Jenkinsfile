@@ -1,40 +1,41 @@
 pipeline{
 agent {
-            docker {image 'mcr.microsoft.com/playwright:v1.60.0-noble'}
+                docker {image 'mcr.microsoft.com/playwright:v1.60.0-noble'}
+                }
+            parameters {
+                choice(name: 'browser', choices:['firefox','chromium','webkit'], description: 'choisi un browser')
+                choice(name: 'tags',choices:['@login','@smoke','@regression','@e2n','@integrartion'], description: 'choisi un tags')
+                booleanParam(name: 'choisitags', defaultValue:true, description:'voulez vous exexuter avec ou sans tags')
+                booleanParam(name:'checkbrowser', defaultValue:true, description:'choisi un browser')
             }
-        parameters {
-            choice(name: 'browser', choices:['firefox','chromium','webkit'], description: 'choisi un browser')
-            choice(name: 'tags',choices:['@login','@smoke','@regression','@e2n','@integrartion'], description: 'choisi un tags')
-            booleanParam(name: 'choisitags', defaultValue:true, description:'voulez vous exexuter avec ou sans tags')
-            booleanParam(name:'checkbrowser', defaultValue:true, description:'choisi un browser')
-        }
 
 
-        stages{
-                stage("install les dependence"){
-                    steps{
-                        sh'npm install'
+            stages{
+                    stage("install les dependence"){
+                        steps{
+                            sh'npm install'
+                        }
                     }
-                }
-                stage("verfier la version"){
-                    steps{
-                    sh'npx playwright --version'  
+                    stage("verfier la version"){
+                        steps{
+                        sh'npx playwright --version'  
+                        }
                     }
-                }
-                stage("tester"){
-                    steps{ 
-                        script{
-                            if(params.checkbrowser){
-                            sh 'npx playwright test'
-                            }else{
-                                if(params.choisitags){
-                                sh ('npx playwright test --project '+params.browser+' --grep '+params.tags) 
+                    stage("tester"){
+                        steps{ 
+                            script{
+                                if(params.checkbrowser){
+                                sh 'npx playwright test'
                                 }else{
-                                    sh ('npx playwright test --project '+params.browser)
+                                    if(params.choisitags){
+                                    sh ('npx playwright test --project '+params.browser+' --grep '+params.tags) 
+                                    }else{
+                                        sh ('npx playwright test --project '+params.browser)
+                                    }
                                 }
-                            }
+                        }
+                        build Jenkinsfile:"Jenkinsfile2"
                     }
-                }
+            }
         }
     }
-}
