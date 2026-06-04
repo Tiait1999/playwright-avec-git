@@ -33,10 +33,8 @@ agent {
                                     echo ('npx playwright test --project '+params.browser)
                                 }
                             }
-                        
-
                     }
                 }
         }
         }
-    
+}
