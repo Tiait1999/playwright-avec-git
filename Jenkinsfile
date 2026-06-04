@@ -34,7 +34,7 @@ agent {
                                     }
                                 }
                         }
-                        build Jenkinsfile:"Jenkinsfile2"
+
                     }
             }
         }
