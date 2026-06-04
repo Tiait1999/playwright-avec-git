@@ -4,14 +4,19 @@ pipeline{
 
     stages{
         stage("verifier la version playwright"){
-            stage("install les dependances"){
+            steps("install les dependances"){
                 sh'npm install'
             }
-             steps("verifier la version"){
-               sh'npx playwright --version' 
+             stage("verifier la version"){
+                steps{
+                     sh'npx playwright --version' 
+                }
             }
             stage("tester"){
-                sh'npx playwright test'
+                steps{
+                    sh'npx playwright test'
+                }
+                
             }
         }
        }
