@@ -1,6 +1,6 @@
 pipeline{
 agent {
-            docker {image 'mcr.microsoft.com/playwright:v1.50.0-noble'}
+            docker {image 'mcr.microsoft.com/playwright:v1.60.0-noble'}
             }
         parameters {
             choice(name: 'browser', choices:['firefox','chromium','webkit'], description: 'choisi un browser')
