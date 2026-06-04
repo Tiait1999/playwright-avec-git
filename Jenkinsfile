@@ -3,8 +3,8 @@ agent {
             docker {image 'mcr.microsoft.com/playwright:v1.50.0-noble'}
             }
         parameters {
-            choice(name: 'browser', choices:['firefox','chromium','webki'], description: 'choisi un browser')
-            choice(name: 'tags',choices:['@login','@smoke','@regression','@e2n','integrartion'], description: 'choisi un tags')
+            choice(name: 'browser', choices:['firefox','chromium','webkit'], description: 'choisi un browser')
+            choice(name: 'tags',choices:['@login','@smoke','@regression','@e2n','@integrartion'], description: 'choisi un tags')
             booleanParam(name: 'choisitags', defaultValue:true, description:'voulez vous exexuter avec ou sans tags')
             booleanParam(name:'checkbrowser', defaultValue:true, description:'choisi un browser')
         }
@@ -25,7 +25,7 @@ agent {
                     steps{ 
                         script{
                             if(params.checkbrowser){
-                            echo 'npx playwright test'
+                            sh 'npx playwright test'
                             }else{
                                 if(params.choisitags){
                                 echo ('npx playwright test --project '+params.browser+' --grep '+params.tags) 
