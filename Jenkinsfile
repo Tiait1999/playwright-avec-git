@@ -34,7 +34,7 @@ agent {
                                 }
                             }
                         }
-                         build job:"Jenkinsfile2"
+                        build job:"Jenkinsfile2"
                     }
                 }
         }

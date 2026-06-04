@@ -32,7 +32,7 @@ agent {
                                 }
                             }
                         }
-                        build job:"Jenkinsfile2"
+                        
                     }
                 }
         }
