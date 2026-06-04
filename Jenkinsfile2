@@ -8,8 +8,6 @@ agent {
             booleanParam(name: 'choisitags', defaultValue:true, description:'voulez vous exexuter avec ou sans tags')
             booleanParam(name:'checkbrowser', defaultValue:true, description:'choisi un browser')
         }
-
-
         stages{
                 stage("install les dependence"){
                     steps{
@@ -34,7 +32,7 @@ agent {
                                 }
                             }
                         }
-                         build job:"Jenkinsfile2"
+                        build job:"Jenkinsfile2"
                     }
                 }
         }
