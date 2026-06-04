@@ -28,9 +28,9 @@ agent {
                             sh 'npx playwright test'
                             }else{
                                 if(params.choisitags){
-                                echo ('npx playwright test --project '+params.browser+' --grep '+params.tags) 
+                                sh ('npx playwright test --project '+params.browser+' --grep '+params.tags) 
                                 }else{
-                                    echo ('npx playwright test --project '+params.browser)
+                                    sh ('npx playwright test --project '+params.browser)
                                 }
                             }
                     }
