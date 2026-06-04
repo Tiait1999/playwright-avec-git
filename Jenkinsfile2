@@ -4,7 +4,7 @@ agent {
             }
         parameters {
             choice(name: 'browser', choices:['firefox','chromium','webki'], description: 'choisi un browser')
-            choice(name: 'tags',choices:['@login','@smoke','@regression','@e2n','integrartion'], description: 'choisi un tags')
+            choice(name: 'tags',choices:['@login','@smoke','@regression','@e2n','@integrartion'], description: 'choisi un tags')
             booleanParam(name: 'choisitags', defaultValue:true, description:'voulez vous exexuter avec ou sans tags')
             booleanParam(name:'checkbrowser', defaultValue:true, description:'choisi un browser')
         }
